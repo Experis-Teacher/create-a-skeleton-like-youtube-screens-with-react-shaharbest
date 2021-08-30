@@ -1,48 +1,44 @@
-import './App.css';
+import "./App.css";
 import dummyData from "./data";
-import CardList from './Components/CardList';
-import { Component } from 'react';
-import SkeletonCard from './Components/SkeletonCard';
+import CardList from "./Components/CardList";
+import { Component } from "react";
+import SkeletonCard from "./Components/SkeletonCard";
 
 class App extends Component {
-  
-  constructor(props){
-    super(props)
+  constructor(props) {
+    super(props);
     this.state = {
       videos: [],
       loading: false,
-      timer: null
-    }
+      timer: null,
+    };
   }
 
-  setVideosState(videos = []){
-    this.setState({videos})
+  setVideosState(videos = []) {
+    this.setState({ videos });
   }
 
-  setLoadingState(value = false){
-    this.setState({loading: value})
+  setLoadingState(value = false) {
+    this.setState({ loading: value });
   }
-  
 
-  componentDidMount(){
+  componentDidMount() {
     this.setLoadingState(true);
     const timer = setTimeout(() => {
       this.setVideosState(dummyData);
       this.setLoadingState(false);
     }, 5000);
-    this.setState({timer})
+    this.setState({ timer });
   }
 
-  componentWillUnmount(){
-    clearTimeout(this.state.timer)
+  componentWillUnmount() {
+    clearTimeout(this.state.timer);
   }
 
-
-
-  render(){
+  render() {
     return (
       <div className="App">
-         {/* {
+        {/* {
           this.state.videos.map((list, index) => {
             return (
               <section key={index}>
@@ -52,7 +48,7 @@ class App extends Component {
               </section>
             );
           })} */}
-          <SkeletonCard/>
+        <SkeletonCard />
       </div>
     );
   }
