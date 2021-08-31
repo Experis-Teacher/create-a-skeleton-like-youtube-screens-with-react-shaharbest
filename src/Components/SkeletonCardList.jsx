@@ -7,6 +7,7 @@ const SkeletonCardList = ({}) => {
       <SkeletonCard />
       <SkeletonCard />
       <SkeletonCard />
+      <SkeletonCard />
   </ul>;
 };
 

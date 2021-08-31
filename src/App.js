@@ -3,6 +3,7 @@ import dummyData from "./data";
 import CardList from "./Components/CardList";
 import { Component } from "react";
 import SkeletonCardList from "./Components/SkeletonCardList";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
 class App extends Component {
   constructor(props) {
@@ -41,11 +42,30 @@ class App extends Component {
         {this.state.videos.length != 0 ? (
           <RealCardList videos={this.state.videos} />
         ) : (
-          <SkeletonCardList />
+          <ShaharSkeleton />
         )}
+        {/* <ShaharSkeleton /> */}
       </div>
     );
   }
+}
+
+function ShaharSkeleton() {
+  const titles = ["stam1", "stam2"];
+  return titles.map((title, index) => {
+    return (
+      <section key={index}>
+        <h2 className="section-title">
+          <SkeletonTheme color="gray" highlightColor="black">
+            <Skeleton variant="text" width="150px" duration={1.3} />
+          </SkeletonTheme>
+        </h2>
+
+        <SkeletonCardList />
+        <hr />
+      </section>
+    );
+  });
 }
 
 function RealCardList({ videos }) {
