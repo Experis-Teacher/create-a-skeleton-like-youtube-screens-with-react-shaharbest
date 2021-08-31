@@ -2,7 +2,7 @@ import "./App.css";
 import dummyData from "./data";
 import CardList from "./Components/CardList";
 import { Component } from "react";
-import SkeletonCard from "./Components/SkeletonCard";
+import SkeletonCardList from "./Components/SkeletonCardList";
 
 class App extends Component {
   constructor(props) {
@@ -38,20 +38,26 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        {/* {
-          this.state.videos.map((list, index) => {
-            return (
-              <section key={index}>
-                <h2 className="section-title">{list.section}</h2>
-                <CardList list={list} />
-                <hr />
-              </section>
-            );
-          })} */}
-        <SkeletonCard />
+        {this.state.videos.length != 0 ? (
+          <RealCardList videos={this.state.videos} />
+        ) : (
+          <SkeletonCardList />
+        )}
       </div>
     );
   }
+}
+
+function RealCardList({ videos }) {
+  return videos.map((list, index) => {
+    return (
+      <section key={index}>
+        <h2 className="section-title">{list.section}</h2>
+        <CardList list={list} />
+        <hr />
+      </section>
+    );
+  });
 }
 
 export default App;
